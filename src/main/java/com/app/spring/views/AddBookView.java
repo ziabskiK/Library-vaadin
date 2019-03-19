@@ -2,7 +2,6 @@ package com.app.spring.views;
 
 import com.app.spring.data.Book;
 import com.app.spring.implementation.BookService;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.html.Label;
@@ -11,20 +10,14 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.component.upload.Upload;
-import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
-import com.vaadin.flow.component.upload.receivers.MultiFileMemoryBuffer;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.FastByteArrayOutputStream;
 
-import java.io.BufferedOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Optional;
 
 @Route(value = "add")
 public class AddBookView extends VerticalLayout {
+
     @Autowired
     BookService service;
 
@@ -46,17 +39,14 @@ public class AddBookView extends VerticalLayout {
     }
 
     private void setupForm() {
-        //setAlignItems(Alignment.CENTER);
         titleTF = new TextField();
         authorTF = new TextField();
+
         this.add(new VerticalLayout(new Label("Enter title: "), titleTF));
         this.add(new VerticalLayout(new Label("Enter author: "), authorTF));
+
         Button addBook = new Button(new Icon(VaadinIcon.PLUS), c -> add());
         check = new Checkbox("Return home after add");
-
-
-
-
 
         add(addBook, check);
 
@@ -64,6 +54,7 @@ public class AddBookView extends VerticalLayout {
 
     private void add() {
 
+        //parsing author name
         String title = titleTF.getValue();
         String desc = description.getValue();
         String[] author = authorTF.getValue().trim().split(" ");

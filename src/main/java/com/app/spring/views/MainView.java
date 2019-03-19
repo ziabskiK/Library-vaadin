@@ -10,8 +10,10 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Route()
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
@@ -62,7 +64,7 @@ public class MainView extends VerticalLayout {
        bookLayout.removeAll();
 
 
-        grid = new Grid<>();
+        grid = new Grid<>(Book.class);
 
         List<Book> customers = bookList.findAll();
 
@@ -73,6 +75,7 @@ public class MainView extends VerticalLayout {
         Grid.Column<Book> firstNameCol = grid.addColumn(Book::getAuthorFirstName).setHeader("Author first name").setWidth("33%");
         Grid.Column<Book> lastNameCol = grid.addColumn(Book::getAuthorLastName).setHeader("Author last name").setWidth("25%");
 
+        grid.addItemDoubleClickListener(e -> getDetailsOfBook());
 
 
 
@@ -86,6 +89,13 @@ public class MainView extends VerticalLayout {
         Optional optional = getUI();
         if (optional.isPresent()) {
             getUI().get().navigate("add");
+        }
+    }
+
+    private void  getDetailsOfBook(){
+        Optional o = getUI();
+        if (o.isPresent()){
+            getUI().get().navigate("book");
         }
     }
 
