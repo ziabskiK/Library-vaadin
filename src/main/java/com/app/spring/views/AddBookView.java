@@ -28,7 +28,7 @@ public class AddBookView extends VerticalLayout {
 
     public AddBookView() {
         setupForm();
-        add(new Button("Go to home", e -> navigateToHome()));
+
     }
 
     private void navigateToHome() {
@@ -49,6 +49,7 @@ public class AddBookView extends VerticalLayout {
         check = new Checkbox("Return home after add");
 
         add(addBook, check);
+        add(new Button("Go to home", e -> navigateToHome()));
 
     }
 

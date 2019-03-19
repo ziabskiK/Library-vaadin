@@ -8,12 +8,11 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.Theme;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Route()
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
@@ -24,9 +23,7 @@ public class MainView extends VerticalLayout {
     private BookService bookList;
 
     private Button searchForCustomers;
-    private Grid<Book> grid;
-    VerticalLayout bookLayout;
-
+    private VerticalLayout bookLayout;
 
 
     public MainView() {
@@ -44,7 +41,7 @@ public class MainView extends VerticalLayout {
         label.setHeight("20");
 
         Button searchForCustomers = new Button("Browse library", click -> searchBooks());
-       // searchForCustomers.setDisableOnClick(true);
+
         Button addNewCustomer = new Button("Add new book", click -> navigateToAddNewBook());
 
         layout.add(searchForCustomers, addNewCustomer);
@@ -55,19 +52,16 @@ public class MainView extends VerticalLayout {
         this.add(label, layout, bookLayout);
 
 
-
-
     }
 
     private void searchBooks() {
         remove(bookLayout);
-       bookLayout.removeAll();
+        bookLayout.removeAll();
 
 
-        grid = new Grid<>(Book.class);
+        Grid<Book> grid = new Grid<>(Book.class);
 
         List<Book> customers = bookList.findAll();
-
 
 
         grid.setItems(customers);
@@ -76,7 +70,6 @@ public class MainView extends VerticalLayout {
 //        Grid.Column<Book> lastNameCol = grid.addColumn(Book::getAuthorLastName).setHeader("Author last name").setWidth("25%");
 
         grid.addItemDoubleClickListener(e -> getDetailsOfBook());
-
 
 
         bookLayout.add(grid);
@@ -92,13 +85,12 @@ public class MainView extends VerticalLayout {
         }
     }
 
-    private void  getDetailsOfBook(){
+    private void getDetailsOfBook() {
         Optional o = getUI();
-        if (o.isPresent()){
+        if (o.isPresent()) {
             getUI().get().navigate("book");
         }
     }
-
 
 
 }
