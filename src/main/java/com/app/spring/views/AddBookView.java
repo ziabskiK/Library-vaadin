@@ -56,9 +56,9 @@ public class AddBookView extends VerticalLayout {
 
         //parsing author name
         String title = titleTF.getValue();
-        String desc = description.getValue();
+
         String[] author = authorTF.getValue().trim().split(" ");
-        Book book = new Book(author[author.length - 1], title, author[0], desc);
+        Book book = new Book(author[author.length - 1], title, author[0]);
         service.addNewBook(book);
         titleTF.clear();
         authorTF.clear();

@@ -71,9 +71,9 @@ public class MainView extends VerticalLayout {
 
 
         grid.setItems(customers);
-        Grid.Column<Book> titleColumn = grid.addColumn(Book::getTitle).setHeader("Title").setWidth("25%");
-        Grid.Column<Book> firstNameCol = grid.addColumn(Book::getAuthorFirstName).setHeader("Author first name").setWidth("33%");
-        Grid.Column<Book> lastNameCol = grid.addColumn(Book::getAuthorLastName).setHeader("Author last name").setWidth("25%");
+//        Grid.Column<Book> titleColumn = grid.addColumn(Book::getTitle).setHeader("Title").setWidth("25%");
+//        Grid.Column<Book> firstNameCol = grid.addColumn(Book::getAuthorFirstName).setHeader("Author first name").setWidth("33%");
+//        Grid.Column<Book> lastNameCol = grid.addColumn(Book::getAuthorLastName).setHeader("Author last name").setWidth("25%");
 
         grid.addItemDoubleClickListener(e -> getDetailsOfBook());
 

@@ -17,8 +17,7 @@ public class Book {
     private String authorFirstName;
     @Column(name = "author_last_name")
     private String authorLastName;
-    @Column(name = "short_review")
-    private String shortReview;
+
 
 
 
@@ -26,11 +25,11 @@ public class Book {
     public Book() {
     }
 
-    public Book(String authorLastName,String title, String authorFirstName, String shortReview) {
+    public Book(String authorLastName,String title, String authorFirstName) {
         this.title = title;
         this.authorFirstName = authorFirstName;
         this.authorLastName = authorLastName;
-        this.shortReview = shortReview;
+
     }
 
     public int getId() {
@@ -65,10 +64,7 @@ public class Book {
         this.authorLastName = authorLastName;
     }
 
-    public String getShortReview(){
-        return shortReview;
-    }
-    public void setShortReview(String shortReview){this.shortReview = shortReview;}
+
 
     @Override
     public String toString() {
