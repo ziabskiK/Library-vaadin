@@ -34,7 +34,7 @@ public class AddBookView extends VerticalLayout {
     private void navigateToHome() {
         Optional o = getUI();
         if (o.isPresent()) {
-            getUI().get().navigate("home");
+            getUI().get().navigate("");
         }
     }
 
