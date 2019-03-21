@@ -4,6 +4,7 @@ import com.app.spring.data.Book;
 import com.app.spring.implementation.BookService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridSingleSelectionModel;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -11,8 +12,10 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.Theme;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Route()
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
@@ -24,6 +27,8 @@ public class MainView extends VerticalLayout {
 
     private Button searchForCustomers;
     private VerticalLayout bookLayout;
+
+    private Grid<Book> grid;
 
 
     public MainView() {
@@ -59,17 +64,15 @@ public class MainView extends VerticalLayout {
         bookLayout.removeAll();
 
 
-        Grid<Book> grid = new Grid<>(Book.class);
+        grid = new Grid<>(Book.class);
 
         List<Book> customers = bookList.findAll();
 
 
         grid.setItems(customers);
-//        Grid.Column<Book> titleColumn = grid.addColumn(Book::getTitle).setHeader("Title").setWidth("25%");
-//        Grid.Column<Book> firstNameCol = grid.addColumn(Book::getAuthorFirstName).setHeader("Author first name").setWidth("33%");
-//        Grid.Column<Book> lastNameCol = grid.addColumn(Book::getAuthorLastName).setHeader("Author last name").setWidth("25%");
 
-        grid.addItemDoubleClickListener(e -> getDetailsOfBook());
+
+      //  grid.addItemDoubleClickListener(e -> setBookDetailsView(grid.getSelectionModel().getFirstSelectedItem()));
 
 
         bookLayout.add(grid);
@@ -85,10 +88,12 @@ public class MainView extends VerticalLayout {
         }
     }
 
-    private void getDetailsOfBook() {
-        Optional o = getUI();
-        if (o.isPresent()) {
-            getUI().get().navigate("book");
+
+    private void setBookDetailsView(Optional<Book> bookSet) {
+        removeAll();
+
+        if (bookSet.isPresent()) {
+            add(new Label(bookSet.toString()));
         }
     }
 
