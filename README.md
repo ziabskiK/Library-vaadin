@@ -4,9 +4,9 @@ REST application using Spring Boot for logic and Vaadin for user interface.
 
 # Technologies
 
-Spring Boot\
-Spring JPA\
-Vaadin Flow
+- Spring Boot
+- Spring JPA
+- Vaadin Flow
 
 # Running
 Import the project to the IDE of your choosing as a Maven project. 
@@ -17,6 +17,6 @@ Open http://localhost:8080/ in browser
 
 # Knowledge
 
-Spring Boot application implementation, configuration and deployment.\
-Vaadin Flow framework.\
-Spring JPA for connection with database.
+- Spring Boot application implementation, configuration and deployment.
+- Vaadin Flow framework.
+- Spring JPA for connection with database.
